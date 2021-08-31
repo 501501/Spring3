@@ -7,16 +7,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sol.s1.util.DBConnector;
+
 @Controller
 @RequestMapping("/bankbook/*")
 public class BankbookController {
 	//pojo (plain old java object)
 	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)
-	public ModelAndView list(Integer [] num, ModelAndView mv) {
-		for(Integer i : num) {
-			System.out.println(i);
-		}
+	public ModelAndView list(ModelAndView mv) {
+		
+	
 		System.out.println("bankbook list");
 		//ModelAndView mv = new ModelAndView();
 		mv.setViewName("bankbook/bankbookList");
