@@ -1,5 +1,7 @@
 package com.sol.s1.bankbook;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,19 @@ import com.sol.s1.util.DBConnector;
 public class BankbookController {
 	//pojo (plain old java object)
 	
+	private BankbookService bankbookService;
+	
+	public BankbookController() {
+		bankbookService = new BankbookService();
+	}
+	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv) {
+		ArrayList<BankBookDTO> ar = bankbookService.getList();
 		
-	
 		System.out.println("bankbook list");
 		//ModelAndView mv = new ModelAndView();
+		mv.addObject("list", ar);
 		mv.setViewName("bankbook/bankbookList");
 		return mv;
 	}

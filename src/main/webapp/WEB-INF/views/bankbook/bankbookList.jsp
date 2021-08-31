@@ -11,5 +11,23 @@
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>List Renewal</h1>
+	
+	<div class="container-fluid">
+		<div class="col-md-8 mx-auto my-0">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>일련번호</th><th>제품명</th><th>이자율</th>
+				</tr>
+				
+				<c:forEach items="${list}" var="dto">
+					<tr>
+						<td>${dto.bookNumber}</td>
+						<td>${dto.bookName}</td>
+						<td>${dto.bookRate}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+	</div>
 </body>
 </html>
