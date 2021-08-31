@@ -8,13 +8,26 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.sol.s1.util.DBConnector;
 
+@Repository
 public class BankBookDAO {
 	private DBConnector dbConnector;
 	
 	public BankBookDAO() {
-		dbConnector = new DBConnector();
+		
+	}
+	
+	@Autowired
+	public BankBookDAO(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
+	}
+	
+	public void setDBConnector(DBConnector dbConnector) {
+		this.dbConnector = dbConnector;
 	}
 	
 	//setInsert

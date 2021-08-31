@@ -2,6 +2,7 @@ package com.sol.s1.bankbook;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,11 +17,8 @@ import com.sol.s1.util.DBConnector;
 public class BankbookController {
 	//pojo (plain old java object)
 	
+	@Autowired
 	private BankbookService bankbookService;
-	
-	public BankbookController() {
-		bankbookService = new BankbookService();
-	}
 	
 	@RequestMapping(value = "bankbookList.do", method = RequestMethod.GET)
 	public ModelAndView list(ModelAndView mv) {
