@@ -5,24 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import com.sol.s1.util.DBConnector;
 
-@Repository
 public class BankBookDAO {
 	private DBConnector dbConnector;
 	
-	public BankBookDAO() {
-		
-	}
-	
-	@Autowired
-	public BankBookDAO(DBConnector dbConnector) {
+	public BankBookDAO(DBConnector dbConnector, int num, String name) {
 		this.dbConnector = dbConnector;
 	}
 	
