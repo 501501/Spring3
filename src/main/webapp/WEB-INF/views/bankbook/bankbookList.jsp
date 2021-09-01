@@ -11,5 +11,17 @@
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>List Renewal</h1>
+	<table>
+		<tr>
+			<th>Number</th><th>Name</th><th>Rate</th>
+			<c:forEach items="${list}" var="dto">
+				<tr>
+					<td>${dto.bookNumber}</td>
+					<td>${dto.bookName}</td>
+					<td>${dto.bookRate}</td>
+				</tr>
+			</c:forEach>
+		</tr>
+	</table>
 </body>
 </html>
