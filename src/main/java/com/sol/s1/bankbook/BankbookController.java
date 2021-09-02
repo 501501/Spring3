@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,13 +29,23 @@ public class BankbookController {
 	//방법2. 매개변수에 파라미터 선언 
 	public void select(BankBookDTO bankBookDTO, Model model) {
 		bankBookDTO = bankBookService.getSelect(bankBookDTO);
-		model.addAttribute("dtov", bankBookDTO);
+		model.addAttribute("dto", bankBookDTO);
 	}
 	
-	@RequestMapping("bankbookInsert.do")
+	@RequestMapping(value = "bankbookInsert", method = RequestMethod.GET)
+	public void insert() {}
+	
+	@RequestMapping(value = "bankbookInsert", method = RequestMethod.POST)
 	public String insert(BankBookDTO bankBookDTO) {
-		System.out.println(bankBookDTO.getBookName());
-		System.out.println("insert");
-		return "redirect:../";
+		int result = bankBookService.setInsert(bankBookDTO);
+		
+		return "redirect:./bankbookList";
+	}
+	
+	@RequestMapping("bankbookDelete")
+	public String delete(Long bookNumber) {
+		int result = bankBookService.setDelete(bookNumber);
+		
+		return "redirect:./bankbookList";
 	}
 }

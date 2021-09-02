@@ -13,6 +13,11 @@ public class BankBookDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.sol.s1.bankbook.BankBookDAO.";
 	
+	//setDelete
+	public int setDelete(Long bookNumber) {
+		return sqlSession.delete(NAMESPACE+"setDelete", bookNumber);
+	}
+	
 	//setInsert
 	public int setInsert(BankBookDTO bankBookDTO) {
 		return sqlSession.insert(NAMESPACE+"setInsert", bankBookDTO);
