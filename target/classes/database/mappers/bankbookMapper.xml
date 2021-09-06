@@ -23,6 +23,20 @@
 		    (SELECT rownum R, BK.* FROM 
 		        (SELECT * 
 		        FROM BANKBOOK 
+		        WHERE
+		        	<choose>
+		        		<when test="kind == 'num'">
+		        			bookNumber
+		        		</when>
+		        		<when test="kind == 'name'">
+		        			bookName
+		        		</when>
+		        		<otherwise>
+		        			bookRate
+		        		</otherwise>
+		        	</choose>
+		        	
+		        LIKE '%' || #{search} || '%'
 		        ORDER BY BOOKNUMBER desc)
 		    BK)
 		WHERE R between #{startRow} and #{lastRow}
@@ -32,7 +46,22 @@
 		SELECT * FROM BANKBOOK WHERE BOOKNUMBER = #{bookNumber}
 	</select>
 	
-	<select id="getTotalCount" resultType="java.lang.Long">
+	<select id="getTotalCount" resultType="java.lang.Long" parameterType="com.sol.s1.util.Pager">
 		SELECT COUNT(BOOKNUMBER) FROM BANKBOOK
+		WHERE
+		<choose>
+			<when test="kind == 'num'">
+		     	bookNumber
+		        </when>
+		    <when test="kind == 'name'">
+		        bookName
+		     </when>
+		     <otherwise>
+		        bookRate
+		     </otherwise>
+		</choose>
+		        	
+		LIKE '%' || #{search} || '%'
+		ORDER BY BOOKNUMBER desc
 	</select>
  </mapper>

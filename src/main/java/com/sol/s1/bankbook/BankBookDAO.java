@@ -41,7 +41,7 @@ public class BankBookDAO {
 	}
 	
 	//getTotalCount
-	public Long getTotalCount() {
-		return sqlSession.selectOne(NAMESPACE+"getTotalCount");
+	public Long getTotalCount(Pager pager) {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", pager);
 	}
 }

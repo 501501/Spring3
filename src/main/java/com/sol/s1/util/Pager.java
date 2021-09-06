@@ -2,6 +2,9 @@ package com.sol.s1.util;
 
 public class Pager {
 	
+	private String kind;
+	private String search;
+	
 	private Long pn;
 	private Long perPage;
 	
@@ -54,6 +57,25 @@ public class Pager {
 		}
 	}
 	
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if (this.search == null) {
+			this.search = "";
+		}
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+
 	public Long getPn() {
 		if (this.pn == null || this.pn <= 0) {
 			this.pn = 1L;
