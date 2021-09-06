@@ -6,12 +6,19 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sol.s1.util.Pager;
+
 @Repository
 public class BankBookDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.sol.s1.bankbook.BankBookDAO.";
+	
+	//setUpdate
+	public int setUpdate(BankBookDTO bankBookDTO) {
+		return sqlSession.update(NAMESPACE+"setUpdate", bankBookDTO);
+	}
 	
 	//setDelete
 	public int setDelete(Long bookNumber) {
@@ -24,12 +31,17 @@ public class BankBookDAO {
 	}
 	
 	//getList
-	public List<BankBookDTO> getList(){
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BankBookDTO> getList(Pager pager){
+		return sqlSession.selectList(NAMESPACE+"getList", pager);
 	}
 	
 	//getSelect
 	public BankBookDTO getSelect(BankBookDTO bankBookDTO) {
 		return sqlSession.selectOne(NAMESPACE+"getSelect", bankBookDTO);
+	}
+	
+	//getTotalCount
+	public Long getTotalCount() {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount");
 	}
 }
